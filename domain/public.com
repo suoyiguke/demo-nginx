@@ -9,7 +9,7 @@ location /activity/subQuery{
 #错误页
 location = /html_fail.html {
     default_type text/html;
-    root /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/html;
+    root E:\workspace\demo-nginx;
 }
 
 #以"@"开头定义的location，是内部接口，外部无法访问

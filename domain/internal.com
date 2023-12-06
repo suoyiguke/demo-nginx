@@ -11,7 +11,7 @@ server {
         location /activity/preLoad{
             #deny all;
             #allow 127.0.0.1;
-            content_by_lua_file /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/lua/activity_pre_load.lua;
+            content_by_lua_file E:\workspace\demo-nginx\lua\activity_pre_load.lua;
         }
 
         #测试请求头
@@ -20,5 +20,5 @@ server {
         }
 
 
-        include /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/domain/public.com;
+        include E:\workspace\demo-nginx\domain\public.com;
 }

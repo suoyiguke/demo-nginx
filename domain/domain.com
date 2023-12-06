@@ -1,3 +1,8 @@
+log_format  access  '$remote_addr - $remote_user [$time_local] "$request" '
+             '$status $body_bytes_sent "$http_referer" '
+             '"$http_user_agent" $http_x_forwarded_for';
+             
+
 server {
         listen 7081;
 
@@ -19,12 +24,12 @@ server {
         set $product_id "";
 
         #用户ID
-        set_by_lua_file $user_id /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/lua/set_common_var.lua;
+        set_by_lua_file $user_id E:\workspace\demo-nginx\lua\set_common_var.lua;
 
         #活动数据查询
         location /activity/query{
             limit_req zone=limit_by_user nodelay;
-            content_by_lua_file /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/lua/activity_query.lua;
+            content_by_lua_file E:\workspace\demo-nginx\lua\activity_query.lua;
             #设置返回的header，并将security token放在header中
             header_filter_by_lua_block{
                ngx.header["st"] = ngx.md5(ngx.var.user_id.."1")
@@ -81,7 +86,7 @@ server {
 
         #结算页提交订单
         location /settlement/submitData{
-            access_by_lua_file /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/lua/submit_access.lua;
+            access_by_lua_file E:\workspace\demo-nginx\lua\submit_access.lua;
             proxy_pass http://backend;
             error_page 500 502 503 504 @json_fail;
         }
@@ -107,6 +112,6 @@ server {
             }
         }
 
-        include /Users/wangzhangfei5/Documents/seckillproject/demo-nginx/domain/public.com;
+        include E:\workspace\demo-nginx\domain\public.com;
 
 }

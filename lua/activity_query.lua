@@ -12,6 +12,10 @@ end
 
 -- 优先查询缓存
 local activity_info = activity:get("activity_"..product_id)
+if activity_info then
+    ngx.log(ngx.INFO,"hit cache")
+    --ngx.say("hit cache")
+end
 
 if not activity_info or activity_info == "" then
     ngx.log(ngx.ERR,"local activity is null!")
